@@ -6,7 +6,6 @@ const shoppingCart = [
   },
   {
     product: "Apples",
-
     price: 0.7,
     quantity: 8,
   },
