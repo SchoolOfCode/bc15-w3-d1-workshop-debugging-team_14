@@ -11,4 +11,4 @@ initials += currentInitial;
 return initials;
 }
 console.log(extractInitialsFromFullName("Abe Maxwell"))
-console.log(console.log(console.log(extractInitialsFromFullName("Martin Boxer Harris"))
+console.log(extractInitialsFromFullName("Martin Boxer Harris"))
