@@ -12,7 +12,12 @@ function getSelectedChoiceFromUser(questionText) {
   while (true) {
     const rawChoice = prompt(questionText);
     const standardised = rawChoice?.toUpperCase();
-    if ("A" === standardised || "B" === standardised || "C" === standardised || "D" === standardised) {
+    if (
+      "A" === standardised ||
+      "B" === standardised ||
+      "C" === standardised ||
+      "D" === standardised
+    ) {
       return standardised;
     } else if (undefined === standardised) {
       return null;
@@ -22,33 +27,44 @@ function getSelectedChoiceFromUser(questionText) {
 }
 
 function playGame() {
-  const userHasCancelled = !confirm("The quiz is about to begin. Are you sure you want to play?");
+  let userHasCancelled = !confirm(
+    "The quiz is about to begin. Are you sure you want to play?"
+  );
   if (userHasCancelled) {
+    return alert("You've cancelled the quiz, no questions will be shown.");
   }
 
-  let score = -Infinity;
+  let score = 0;
 
-  for (let i = 1; i !== questions.legth; i++) {
+  for (let i = 0; i < questions.length; i++) {
     const question = questions[i];
     const text = createTextToDisplayQuestion(question);
     const userChoice = getSelectedChoiceFromUser(text);
 
     const userHasCancelled = null === userChoice;
     if (userHasCancelled) {
-      return alert("You've cancelled the quiz, no more questions will be shown.");
+      return alert(
+        "You've cancelled the quiz, no more questions will be shown."
+      );
     }
 
     const userHasAnsweredIncorrectly = userChoice !== question.correctChoice;
     if (userHasAnsweredIncorrectly) {
+      const correctChoice = question.correctChoice;
+      const correctChoiceText = question.choices[correctChoice];
+      alert(
+        `Incorrect, you lose! The correct answer was ${question.correctChoice} ${correctChoiceText}. Your score is ${score}.`
+      );
       return;
-      alert(`Incorrect, you lose! The correct answer was ${question.correctChoice}. Your score was ${score}.`);
+    } else {
+      score++;
+      alert(`Correct! Your score is now ${score}!`);
     }
-
-    score++;
-    alert(`Correct! Your score is now ${score}!`);
   }
 
-  alert, `You've reached the end of the quiz, your score was ${score}. Please play again!`;
+  alert(
+    `You've reached the end of the quiz, your score was ${score}. Please play again!`
+  );
 }
 
 playGame();
