@@ -1,3 +1,5 @@
+// The only thing wrong was that the loop ran an extra time because it originally read <= so the loop tried to access a fourth item which didn't exist. (an index which wasn't there).
+
 const shoppingCart = [
   {
     product: "Bananas",
